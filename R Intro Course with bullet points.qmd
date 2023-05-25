@@ -1,0 +1,1116 @@
+---
+title: "R Intro Course"
+---
+
+# Schedule
+
+**Schedule**
+
+*10:00-10:45*
+
+-   Introduction to R
+
+-   Data manipulation
+
+-   Useful R functions
+
+*11:00-11:45*
+
+-   Reading/writing of files
+
+-   Defining own R functions
+
+-   Conditions and loops
+
+**Lunch**
+
+*13:00-13:45*
+
+-   EDA
+
+-   t-test 
+
+*14:00-14:45*
+
+-   Linear regression
+
+-   Logistic regression
+
+-   Q&A 
+
+# Hour 1
+
+## Aliaksandr Hubin (aliaksah\@hiof.no)
+
+**EDUCATION:**
+
+-   2018: PhD (Statistics), University of Oslo, Faculty of Mathematics and Natural Sciences, Norway
+
+**POSITIONS:**
+
+-   2022-\...: Associate Professor (20%) in statistics, University of Oslo
+
+-   **2022-\...: Associate Professor (50%) in statistics, Ostfold University College**
+
+-   2022-\...: Associate Professor (50%) in statistics, Faculty of Chemistry, Biotechnology and Food Science, Norwegian University of Life Sciences
+
+-   2021-\...: Head (voluntary) of Oslo Section of the Norwegian Statistical Association
+
+## R language
+
+-   **Introduction to R Course:**
+
+    -   R is a powerful programming language for data analysis and statistical computing.
+
+    -   The course is designed for beginners with little or no experience in programming and stats.
+
+    -   Gain a basic understanding of R's capabilities.
+
+    -   **Challenging** and **super - intensive** course, but we must manage. [**Important to work with the given notebook at home after the workshop to get the maximum of it!**]{.underline}
+
+    -   Do not get confused if you can not solve the tasks, I will go through the solutions right away.
+
+    -   **Feel free to reuse any part of these materials in your research!**
+
+-   **Course Highlights:**
+
+    -   Navigate the R interface.
+
+    -   Work with simple data types.
+
+    -   Manipulate data structures.
+
+    -   Visualize data.
+
+    -   Run simple statistical tests and models.
+
+    -   We do not go into details on statistics itself.
+
+-   **Course Outcomes:**
+
+    -   Understand a foundation in R.
+
+    -   Explore R's capabilities.
+
+    -   Apply R to real-world data analysis projects.
+
+    -   Hopefully become motivated to learn advanced R.
+
+-   **Let's get started!**
+
+```{r}
+print("Welcome to the course!")
+```
+
+## **Task 1 (1 minute)**
+
+Now try printing and running "Hello, world! I am so eager to learn R today!" in the code-cell below
+
+```{r}
+#print Hello, world! I am so eager to learn R today!
+print("Hello, world! I am so eager to learn R today!")
+```
+
+## Base R
+
+-   **Base R:**
+
+    -   Core set of basic functions and packages included in R by default.
+
+    -   No additional installation or configuration required.
+
+-   **Functionality:**
+
+    -   Data manipulation, statistical analysis, and graphical visualization.
+
+    -   Data import/export, cleaning, transformation, and descriptive statistics.
+
+    -   Hypothesis testing, regression analysis, time-series analysis, and more.
+
+-   **Graphical Tools:**
+
+    -   Histograms, scatter plots, bar charts, box plots, and more.
+
+-   **Foundation:**
+
+    -   Base R serves as the foundation for other R packages and extensions.
+
+    -   Essential for any R user's toolkit.
+
+    ## Common variable types in base R
+
+    -   In Base R, there are several common variable types used for data storage and manipulation. Understanding these variable types is essential for effective data analysis and programming in R.
+
+    1.  Numeric:
+
+        -   Represents numerical values, both integers and decimals.
+
+        -   Commonly used for quantitative measurements and calculations.
+
+        -   Example: 10, 3.14, -5.2
+
+    2.  Character:
+
+        -   Represents textual data, such as words, sentences, or strings.
+
+        -   Enclosed in quotation marks (" ") or single quotes (' ').
+
+        -   Example: "Hello", 'R programming'
+
+    3.  Logical:
+
+        -   Represents Boolean values: TRUE or FALSE.
+
+        -   Used for logical comparisons and conditional operations.
+
+        -   Example: TRUE, FALSE
+
+    4.  Integer:
+
+        -   Represents whole numbers without decimal points.
+
+        -   Used for precise calculations and indexing operations.
+
+        -   Example: 20, -7, 0
+
+    Understanding these variable types is crucial for proper data handling, analysis, and visualization in R. By utilizing the appropriate variable types, you can perform various operations and leverage R's extensive functionality effectively.
+
+```{r}
+# Define different data types
+u <- 5 # Integer variables for integer valued information
+l <- FALSE #Logical variable for boolean data
+x <- 5.3 # Numeric variable for decimal imformation
+y <- "Hello" # String variable for textual information
+z <- c(1, 3, 2, 1, 4, 5) # c() function combines integer into a vector of integer variables 
+w <- matrix(1:9, nrow = 3, ncol = 3) # A matrix of integer variables
+```
+
+In this code, we define four different data types:
+
+-   **`u`** is an integer variable with the value 5
+-   **`l`** is a logical variable with the value False
+-   **`x`** is a numeric variable with the value 5.3
+-   **`y`** is a character variable with the value "Hello"
+-   **`z`** is a numeric vector containing the values 1, 3, 5, 7, and 9
+-   **`w`** is a matrix with three rows and three columns, containing the values 1 through 9
+
+We then print each of these data types using the **`print()`** function.
+
+```{r}
+
+# Print the data types
+print(x)
+print(y)
+print(z)
+print(z[3]) # Get the third element of z and print it
+print(w)
+print(w[1,2]) # Get and print element of w in first row and second column
+print(w[2,])  # Get and print the second row of w
+print(w[,1])  # Get and print the first column of w
+```
+
+## R documentation
+
+In R, you can get help on any function using the built-in **`help()`** function or the **`?`** operator. To get help on a specific function, simply type **`help(function_name)`** or **`?function_name`** in the R console, replacing **`function_name`** with the name of the function you want to learn more about. For example, to get help on the **`mean()`** function, you could type either **`help(mean)`** or **`?mean`**.
+
+This will open up the help documentation for the function in a new window or pane in your R environment. The help documentation includes a description of what the function does, the arguments it takes, and the values it returns, as well as examples of how to use the function in practice.
+
+```{r}
+help(mean)
+?mean
+```
+
+now apply the mean function
+
+```{r}
+mean(w)
+```
+
+We can plot learn and plot vector and matrix variables them using **`plot()`**. Note that the **`plot()`** function is used to plot the numeric vector **`z`**.
+
+```{r}
+# Plot the data types
+help(plot)
+plot(x = z, type = "b",main = y, xlab = "Elements of z", ylab = "Values of z")
+```
+
+## **Task 2 (3 minutes)**
+
+Now create a new variable v with an integer value of 2 and then create a variable **a \<- v + u, b \<- v\*x, c \<- v + u, d \<- x/u**, s \<- **z\*c** , and **m \<- (b \> a)** then print all these resulting variables using the print command in the code cell below.
+
+```{r}
+v <- 2  # Create variable v with an integer value of 2
+
+# Create other variables based on v and other existing variables
+a <- v + u
+b <- v * x
+c <- v + u
+d <- x / u
+s <- z*c
+m <- (b > a)
+
+
+# Print the values of all variables
+print(v)
+print(a)
+print(b)
+print(c)
+print(d)
+print(s)
+print(m)
+
+```
+
+Then, create a vector named q consisting of a, b, c, d, x, v, u in a given order, print this vector using the print() function, and plot this vector using plot() function. Use red color and lines when plotting (use type = "l" and col = "red" arguments to do that).
+
+```{r}
+# Create the vector q
+q <- c(a, b, c, d, x, v, u)
+
+# Print the vector q
+print(q)
+
+# Plot the vector q
+plot(q, type = "l", col = "red", lwd = 2)
+```
+
+## **Data.frame**
+
+Now, let us study the data.frame type of objects in R, data frame consists of a list (coolumns) of vectors, building essentially a frame object similar to excel sheets with rows and columns
+
+```{r}
+# Create a data frame with weights and heights for male and female
+df <- data.frame(
+  gender = c(rep("male", 5), rep("female", 5)), # see help(rep), i.e. rep repeats "male" 5 times and returns a vector, 
+  height = c(175, 180, 165, 172, 168, 165, 170, 162, 175, 168),
+  weight = c(70, 80, 95, 75, 100, 55, 60, 120, 65, 58)
+)
+
+head(df) #Try help(head)
+
+df$bmi <- df$weight/((df$height/100)*2)
+
+head(df)
+
+# Set plot parameters
+plot(x = df$height, y = df$weight, pch = 16, col = ifelse(df$gender == "male","blue","pink"), xlab = "Height", ylab = "Weight", 
+     main = "Weight vs. Height by Gender") #h/b help(ifelse)
+
+# Add legend
+legend("bottomright", legend = c("Male", "Female"), pch = 16, col = c("blue","pink"))
+```
+
+This code creates a data frame **`df`** with two variables **`height`** and **`weight`** for male and female. The **`plot()`** function is used to create a scatter plot of weight as a function of height for both genders on one plot, with **`pch = 16`** to set the point marker, **`col = df$gender`** to color points by gender, and appropriate labels for the x-axis, y-axis, and title. The **`legend()`** function is used to add a legend to the plot, with **`legend = c("Male", "Female")`** to set the legend labels and **`col = c("blue", "red")`** to match the colors of the points.
+
+### **Task 3 (5 minutes)**
+
+Write code that creates a column **weight_problem i**ndicating whether a person has potential weight problems (bmi \> 25) and plots the data in different colors based on that variable (instead of gender used above).
+
+```{r}
+
+
+# Create a column indicating weight problems
+df$weight_problem <- ifelse(df$bmi>25,"Yes","No")
+
+# Set plot parameters
+plot(df$height, df$weight, pch = 16, col = ifelse(df$weight_problem  == "Yes","red","green"),
+     xlab = "Height", ylab = "Weight", 
+     main = "Weight vs. Height by Weight Problem")
+
+# Add legend
+legend("bottomright", legend = c("No", "Yes"), 
+       pch = 16, col = c("green", "red"))
+
+```
+
+## R packages
+
+\- R packages extend the capabilities of base R.
+
+\- Collections of functions, data, and documentation.
+
+\- Created and maintained by the R community.
+
+\- Thousands of packages available on **CRAN** and other repositories.
+
+\- Cover various topics: data manipulation, visualization, machine learning, and more.
+
+**Installing and Loading Packages:**
+
+1\. Install a package:
+
+-   Use *utils::***install.packages()** function.
+
+-   Example: *utils::***install.packages("ggplot2")** for the ggplot2 package.
+
+2\. Load a package:
+
+-   Use **library()** function.
+
+-   Example: **library(ggplot2)** to load ggplot2.
+
+-   Makes package functions available for use.
+
+\- Install packages **once**, **load** them **for each** R session.
+
+\- R packages enhance data analysis and modeling capabilities.
+
+\- Create a vibrant ecosystem of R tools and resources.
+
+```{r}
+
+utils::install.packages("ggplot2") 
+
+# Plot weight as a function of height for both genders
+library(ggplot2)
+ggplot(df, aes(x = height, y = weight, color = gender)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = TRUE)
+```
+
+## **Task 4 (2 minutes)**
+
+Install package **aRtsy**. Then load it and run a **help(canvas_flame)** followed by **canvas_flame(colors = colorPalette("dark2"))** functions.
+
+```{r}
+utils::install.packages("aRtsy")
+library(aRtsy)
+
+help(canvas_flame)
+canvas_flame(colors = colorPalette("dark2"))
+
+```
+
+# Hour 2
+
+## Data writing
+
+**Save** the weight data **df** that we created in the first hour into **.csv** and **.txt** formats
+
+```{r}
+head(df)
+write.csv(x = df,file = "data.csv")
+write.table(x = df,file = "data.txt")
+```
+
+**Save** the weight data **df** that we created in the first hour into and **.sav** formats for excel and SPSS, Stata, SAS. Here, we first need to install the **foreign** package
+
+```{r}
+# Install and load the required package
+utils::install.packages("foreign")
+library(foreign)
+
+# Save data frame to SPSS 
+write.foreign(df, "data.sav", "data", package = "SPSS")
+
+# Save data frame to SAS
+write.foreign(df, "data.sas", "data", package = "SAS")
+
+# Save data frame to Stata
+write.foreign(df, "data.dta", "data", package = "Stata")
+```
+
+## Writing to excel
+
+**Save** the weight data **df** that we created in the first hour into .xlsx format using **write_xlsx()** function. Here, we first need to install the **writexl** package
+
+```{r}
+utils::install.packages("writexl")
+library(writexl)
+
+# Save data frame to Excel (.xlsx)
+write_xlsx(df, "data.xlsx")
+```
+
+## Data reading
+
+Now read the saved data into R from **.csv**, **.txt** and check that this has been done correctly
+
+```{r}
+head(df)
+
+df.csv <- read.csv("data.csv")
+head(df.csv)
+
+df.csv <- read.csv("data.csv")[,-1]
+head(df.csv)
+
+df.txt <- read.table("data.txt")
+head(df.txt)
+```
+
+## **Task 5 (2 minutes)**
+
+**Read** the weight data **from** .xlsx format using **read_xlsx()** function (follow the **write_xlsx()** example ). Ckech what you have read through **head()** command. Here, we first need to **install** the **readexl** package.
+
+```{r}
+utils::install.packages("readxl")
+library(readxl)
+
+head(df)
+
+# Save data frame to Excel (.xlsx)
+df.xlsx <- read_xlsx("data.xlsx",sheet = 1)
+head(df.xlsx)
+```
+
+You probably got a slightly different data.frame format, it is because **readxl** uses a bit more advanced data frames, but we can convert them to the basic ones as follows using the **as.data.frame()** function.
+
+```{r}
+head(df)
+
+df.xlsx <- as.data.frame(read_xlsx("data.xlsx",sheet = 1))
+head(df.xlsx)
+```
+
+N/b reading from SAS, SPSS, and Stata can also be done through **foreign** package, but we skip that for the interest of time.
+
+## Read a real data to analyze
+
+-   Dataset Description:
+
+    -   Salaries of Employees dataset.
+
+    -   Includes information on gender, age, and PhD degree.
+
+    -   Downloaded from UCI Machine Learning Repository.
+
+    -   Limited number of instances: 100.
+
+    -   Contains 4 attributes, including the class attribute.
+
+```{r}
+data <- read.csv("salary.csv")
+head(data)
+```
+
+## **Introduction to Loops and If Statements in R (a bit advanced)**
+
+-   Loops and if statements are fundamental programming constructs in R that allow us to perform repetitive tasks and make decisions based on certain conditions.
+
+-   Let's consider an example using a dataset of employee salaries to understand how loops and if statements can be used in R.
+
+```{r}
+# Calculate the average salary
+avg_salary <- mean(data$Salary)
+print(avg_salary)
+
+# Create an empty column to store income levels
+data$above_mean_salary <- ""
+print(data$above_mean_salary)
+
+# Loop through each row of the data
+for (i in 1:nrow(data)) {
+  # Check if the salary is above or below average
+  if (data$Salary[i] > avg_salary) {
+    data$above_mean_salary[i] <- "Yes"
+  } else {
+    data$above_mean_salary[i] <- "No"
+  }
+}
+
+print(data$above_mean_salary)
+
+# Print the updated data
+head(data)
+```
+
+-   In this code snippet, we calculate the average salary using the **`mean()`** function and create an empty column **`above_mean_salary`** to store whether income levels are above the average.
+
+-   We use a for loop to iterate through each row of the data and check if the salary is above or below the average using an if statement.
+
+-   If the salary is above average, we assign the value "Yes" to the corresponding element in **`above_mean_salary`**, otherwise, we assign "No".
+
+-   Finally, display the updated data using the **`head()`** function.
+
+-   This example showcases how to use loops and if statements to perform calculations and make decisions based on specific conditions in R. By mastering these concepts, you can efficiently process and analyze large datasets, automate tasks, and create more complex programs in R.
+
+## **Task 6 (4 minutes)**
+
+Use for loops and if else statements to define a column **`above_mean_age`** following our example above and compute a column of whether the individual has the age above average in our sample
+
+```{r}
+# Calculate the average age
+avg_age <- mean(data$Age)
+print(avg_age)
+
+# Create an empty column to store age groups
+data$above_mean_age <- ""
+
+# Loop through each row of the data
+for (i in 1:nrow(data)) {
+  # Check if the age is above or below average
+  if (data$Age[i] > avg_age) {
+    data$above_mean_age[i] <- "Yes"
+  } else {
+    data$above_mean_age[i] <- "No"
+  }
+}
+
+
+# Print the updated data
+head(data)
+
+```
+
+## **Computing Column Without Loops - Salary Above Median**
+
+-   In R, we can perform computations and create new columns in a data frame without explicitly using loops. Let's explore an example of computing a column indicating whether the salary is above the median salary.
+
+```{r}
+# Calculate the median salary
+median_salary <- median(data$Salary)
+print(median_salary)
+
+# Create a new column using a logical condition
+data$above_median_salary <- ifelse(data$Salary > median_salary, "Yes", "No")
+
+# Print the updated data
+head(data)
+
+```
+
+## **Task 7 (2 minutes)**
+
+Define a column **`above_median_age`** without using loops following our example above
+
+```{r}
+# Calculate the median age
+median_age <- median(data$Age)
+print(median_age)
+
+# Create a new column using a logical condition
+data$above_median_age <- ifelse(data$Age > median_age, "Yes", "No")
+
+# Print the updated data
+head(data)
+
+```
+
+## **Defining a user function (advanced)**
+
+Let us define a new function in R that counts the number of differing values in a pair of vectors of the same length:
+
+```{r}
+count_diff_values <- function(vector1, vector2) {
+  
+  if(length(vector1)!=length(vector1))
+  {
+    Stop("Error: vectors should be of the same length")
+  }
+  
+  diff <- 0
+  for(i in 1:length(vector1))
+    if(vector1[i] != vector2[i])
+      diff <- diff + 1
+    
+  return(diff)
+}
+```
+
+-   The **`count_diff_values`** function counts the number of differences between two input vectors.
+
+-   Usage: **`count_diff_values(vector1, vector2)`**
+
+-   Preconditions:
+
+    -   The input vectors **`vector1`** and **`vector2`** must have the same length.
+
+-   Steps:
+
+    1.  Check if the lengths of **`vector1`** and **`vector2`** are equal.
+
+        -   If not equal, an error is thrown.
+
+    2.  Initialize a variable **`diff`** to 0.
+
+    3.  Loop through each element of **`vector1`**.
+
+    4.  Compare the corresponding elements of **`vector1`** and **`vector2`**.
+
+        -   If they are different, increment **`diff`** by 1.
+
+    5.  Return the final value of **`diff`**, representing the count of differences.
+
+-   **Example**
+
+    ```{r}
+    # Example usage
+    vector1 <- c(1, 2, 3, 4, 4)
+    vector2 <- c(3, 4, 5, 4, 7)
+    result <- count_diff_values(vector1, vector2)
+    print(result)
+    ```
+
+Now, apply **`count_diff_values`** to check how many people have a different status for **above_min_salary** and **above_median_salary**, then do thew same for **age**
+
+```{r}
+# Check differences in salary status
+diff_salary <- count_diff_values(data$above_mean_salary, data$above_median_salary)
+print(diff_salary)
+
+# Check differences in age status
+diff_age <- count_diff_values(data$above_mean_age, data$above_median_age)
+print(diff_age)
+```
+
+# Hour 3
+
+## Explanatory data analysis
+
+Let us learn how to get some summary statistics for our data.
+
+```{r}
+# Summary statistics for numerical variables
+summary(data$Salary)
+
+
+# Summary statistics for categorical variables
+table(data$Gender)
+
+
+# Cross-tabulation of Gender and PhD
+table(data$Gender, data$PhD)
+
+
+# Aggregate consinous vaiable by a categorical variable
+aggregate(data$Salary, by = list(data$PhD), FUN = mean)
+
+# Correlation between variables
+cor(data[,1:4])
+
+```
+
+## **Task 8 (2 minutes)**
+
+Run **summary** for **age**, run **table** for **PhD**, **cross tabulate using table** **above_mean_salary** and **above_mean_age**, aggregate **Salary** by **Gender**
+
+```{r}
+summary(data$Age)
+
+table(data$PhD)
+
+table(data$above_mean_salary,data$above_mean_age)
+
+```
+
+Now, look at distribution through **histograms** of continuous variables and **barplots** of discrete variables
+
+```{r}
+# Histogram of Salary
+hist(data$Salary)
+
+# Histogram of log Salary
+hist(log(data$Salary))
+
+
+# Histogram of Gender
+barplot(table(data$Gender), main = "Gender")
+
+
+# Histogram of whether one has above median salary
+barplot(table(data$above_median_salary),main = "above_median_salary")
+
+# Histogram of whether one has above mean salary
+barplot(table(data$above_mean_salary), main = "above_mean_salary")
+
+# Histogram of whether one has above median age
+barplot(table(data$above_median_age), main = "above_median_age")
+
+# Histogram of whether one has above mean age
+barplot(table(data$above_mean_age), main = "above_mean_age")
+
+```
+
+And let us learn to plot **boxplots** of continuous variables
+
+```{r}
+# Boxplot of Salary
+boxplot(data$Salary,main = "Salary")
+
+# Boxplot of Salary by Gender
+boxplot(data$Salary ~ data$Gender)
+
+# Boxplot of Salary by PhD
+boxplot(data$Salary ~ data$PhD)
+
+# Boxplot of Salary by PhD and Gender
+boxplot(data$Salary ~ data$PhD + data$Gender)
+
+
+```
+
+## **Task 9 (3 minutes)**
+
+Plot **hist** of **age**, **barplot** of **PhD**, **boxplots** of **Age**, **Age** by **Gender**, **Age** by **PhD** and **Age** by both **Gender and PhD**
+
+```{r}
+
+# Histogram of Age
+hist(data$Age)
+
+# Histogram of PhD status
+barplot(table(data$PhD), main = "PhD")
+
+
+# Boxplot of Age
+boxplot(data$Age,main = "Age")
+
+# Boxplot of Age by Gender
+boxplot(data$Age ~ data$Gender)
+
+# Boxplot of Age by PhD
+boxplot(data$Age ~ data$PhD)
+
+# Boxplot of Age by PhD and Gender
+boxplot(data$Age ~ data$PhD + data$Gender)
+```
+
+## Introduction to t-tests
+
+We shall learn how to check assumptions and run the one sample t-test and two sample t-tests. No math details are given in this short course.
+
+## **One-Sample t-Test**
+
+-   The **null hypothesis** in a **one-sample t-test** states that **there is no significant difference between the sample mean and a specified value**.
+
+-   Example: In our analysis of **Salary**, we can formulate the **null hypothesis** as follows:
+
+    -   **H0: The mean Salary = \$70,000**
+
+-   The alternative hypothesis could then be:
+
+    -   **HA: The mean Salary != \$70,000**
+
+    -   **HA: The mean Salary \> \$70,000**
+
+    -   **HA: The mean Salary \< \$70,000**
+
+-   If the **p-value is less** than the chosen significance level (α), typically **0.05**:
+
+    -   Reject the null hypothesis.
+
+    -   Conclude that there is **a significant difference** between the means of the two groups.
+
+-   If the **p-value** is **greater** than or equal to α:
+
+    -   Fail to reject the null hypothesis.
+
+    -   Indicate **no significant difference** between the means of the two groups.
+
+**One-Sample t-test on Salary:**
+
+```{r}
+
+# One-sample t-tests
+t.test(data$Salary, mu = 70, alternative = "two.sided")
+
+
+t.test(data$Salary, mu = 70, alternative = "less")
+
+
+```
+
+**Assumptions** of a one-Sample t-test: Salary Analysis
+
+1.  **Normality Assumption**:
+
+    -   **Shapiro-Wilk test** assesses normality.
+
+    -   Null hypothesis: **Salary data is [normally distributed.]{.underline}**
+
+    -   If p-value \< significance level (e.g., 0.05), reject the null hypothesis.
+
+```{r}
+# One-sample t-test assumptions
+
+# Shapiro-Wilk test for normality
+shapiro.test(data$Salary)
+
+```
+
+## **Task 10 (2 minutes)**
+
+**Check** the **normality** assumption for **age** and run the **t-test** of **mean age** being equal to **50** with a two-sided alternative
+
+```{r}
+# Shapiro-Wilk test for normality
+shapiro.test(data$Age)
+
+t.test(data$Age, mu = 50, alternative = "two.sided")
+```
+
+If **normality** assumptions are **not met**, run a sign test instead of t-test with the following syntax
+
+```{r}
+utils::install.packages("BSDA")
+library(BSDA)
+
+# Perform one-sample sign test
+SIGN.test(data$Salary, md = 70, alternative = "two.sided")
+
+```
+
+## **Two-Samples t-test**
+
+**Null Hypothesis** (H0): The means of two independent groups being compared are equal.
+
+-   H0: μ1 = μ2
+
+**Alternative Hypotheses** (HA): The means of two independent groups being compared are not equal or one of them is greater.
+
+-   HA: μ1 ≠ μ2
+
+-   HA: μ1 \> μ2
+
+-   HA: μ1 \< μ2
+
+Considerations:
+
+-   μ1 represents the population mean of Group 1.
+
+-   μ2 represents the population mean of Group 2.
+
+**Run** t-tests with all three alternative hypotheses
+
+```{r}
+# Subset the data by PhD status
+salary_phd <- data$Salary[data$PhD == 1]
+salary_non_phd <- data$Salary[data$PhD == 0]
+
+# Perform two-sample t-test
+t.test(salary_phd, salary_non_phd,alternative = "two.sided")
+
+t.test(salary_phd, salary_non_phd,alternative = "greater")
+
+```
+
+**Normality** assumptions for the data in both groups
+
+```{r}
+
+# Shapiro-Wilk test for normality
+shapiro.test(salary_phd)
+shapiro.test(salary_non_phd)
+```
+
+**Equal variance** assumption between the groups
+
+-   Levene's test examines equality of variances.
+
+-   Null hypothesis: Variances of Salary data are equal.
+
+-   If p-value \> significance level, **fail to reject the null hypothesis.**
+
+```{r}
+utils::install.packages("car")
+library(car)
+
+# Levene's test for equality of variances
+leveneTest(Salary~factor(PhD), data = data)
+```
+
+Assumptions are not met, hence run Mann-Whitney U test
+
+```{r}
+# Perform Mann-Whitney U test
+
+wilcox.test(salary_phd, salary_non_phd,alternative = "two.sided")
+
+
+wilcox.test(salary_phd, salary_non_phd,alternative = "greater")
+```
+
+## **Task 11 (3 minutes)**
+
+Run two sample t test for the **Salaries** by **Gender** with a **Ha of** that men geting more, then **check the assumptions** and if needed run a **Mann-Whitney U test**
+
+```{r}
+# Subset the data by Gender
+salary_men <- data$Salary[data$Gender == 1]
+salary_women <- data$Salary[data$Gender == 0]
+
+# Perform two-sample t-test
+t.test(salary_men, salary_women,alternative = "greater")
+
+
+# Shapiro-Wilk test for normality
+shapiro.test(salary_men)
+shapiro.test(salary_women)
+
+# Levene's test for equality of variances
+leveneTest(Salary~factor(PhD), data = data)
+
+
+# Perform Mann-Whitney U test
+wilcox.test(salary_men, salary_women,alternative = "greater")
+```
+
+# Hour 4
+
+## Linear regression
+
+-   Linear regression **establishes a relationship** between a **continuous** dependent variable (**response**) and independent variables (**covariates**).
+
+-   We shall model response variable: **Salary** (represents individuals' salaries).
+
+-   Covariates:
+
+    -   **Age**: Age of the individuals.
+
+    -   **Gender**: Gender of the individuals (0 = Female, 1 = Male).
+
+    -   **PhD**: PhD status (0 = No, 1 = Yes).
+
+    -   
+
+-   The linear regression model can be represented as: Salary = β₀ + β₁ \* Age + β₂ \* Gender + β₃ \* PhD + ε, ε\~N(**0**,**Var**)\
+
+-   **Assumptions** of Linear Regression:
+
+    1.  Linearity: The relationship between the response and covariates is linear.
+
+    2.  Independence: Observations are independent of each other.
+
+    3.  Homoscedasticity: The variance of the errors is constant across all levels of the covariates.
+
+    4.  Normality: The errors (residuals) are normally distributed.
+
+    5.  No multicollinearity: The covariates are not highly correlated with each other.
+
+    ```{r}
+    # Fit the linear regression model
+    lm_model <- lm(formula = Salary ~ Age + Gender + PhD, data = data)
+
+    # Print the model summary
+    summary(lm_model)
+
+    ```
+
+-   The **`lm()`** function is used to fit the linear regression model.
+
+-   In the formula **`Salary ~ Age + Gender + PhD`**, we specify the response variable (**`Salary`**) and the covariates (**`Age`**, **`Gender`**, and **`PhD`**).
+
+-   The **`data`** argument specifies the data frame containing the variables.
+
+-   The **`summary()`** function is used to print the model summary, which provides information about the estimated coefficients, their standard errors, t-values, and p-values.
+
+**Now check the assumptions**
+
+```{r}
+utils::install.packages("lmtest")
+library(lmtest)
+
+# Normality of residuals (H0)
+shapiro.test(lm_model$residuals)
+
+# Independence of residuals (H0)
+durbinWatsonTest(lm_model)
+
+# Homoscedasticity of the residuals (H0)
+bptest(lm_model)
+
+# Calculate correlations
+cor(data[,1:4])
+
+
+
+```
+
+1.  Residuals vs Fitted Values plot (which = 1): This plot helps assess the linearity assumption. Ideally, the residuals should be randomly scattered around the horizontal line at zero, indicating no clear pattern or systematic deviation from linearity.
+
+2.  Normal Q-Q plot of residuals (which = 2): This plot checks the normality assumption of the residuals. The points on the plot should approximately follow a straight line, suggesting that the residuals are normally distributed.
+
+3.  Scale-Location plot (which = 3): This plot examines the assumption of constant variance (homoscedasticity). The points should be randomly scattered around a horizontal line, indicating that the variability of residuals is consistent across different levels of the fitted values.
+
+4.  Residuals vs Leverage plot (which = 5): This plot helps identify influential observations and outliers based on their leverage and standardized residuals. Points that are distant from the main cluster might have a strong influence on the regression model.
+
+```{r}
+# Residuals vs Fitted Values plot
+plot(lm_model, which = 1)
+
+# Normal Q-Q plot of residuals
+plot(lm_model, which = 2)
+
+# Scale-Location plot (Square root of standardized residuals vs Fitted Values)
+plot(lm_model, which = 3)
+```
+
+## **Task 12 (5 minutes)**
+
+Remove the Gender from the model and use **sqrt(Salary)** as the response in our linear regression and use more complicated effects, i.e. use **formula = sqrt(Salary) \~ Age + Gender + PhD + I(Age\^2) + I(Age\^3) + I(Age\^4) + I(Age\^5) + I(Age\*PhD) + I(Age\*Gender) + I(PhD\*Gender)**. Then check the assumptions of the model.
+
+```{r}
+# Fit the linear regression model
+lm_model <- lm(formula = sqrt(Salary) ~ Age + Gender  + PhD + I(Age^2) + I(Age^3) + I(Age^4) + I(Age^5) + I(Age*PhD) + I(Age*Gender) + I(PhD*Gender), data = data)
+
+# Print the model summary
+summary(lm_model)
+
+# Normality of residuals (H0)
+shapiro.test(lm_model$residuals)
+
+# Independence of residuals (H0)
+durbinWatsonTest(lm_model)
+
+# Homoscedasticity of the residuals (H0)
+bptest(lm_model)
+
+# Calculate correlations
+cor(data[,1:4])
+
+# Residuals vs Fitted Values plot
+plot(lm_model, which = 1)
+
+# Normal Q-Q plot of residuals
+plot(lm_model, which = 2)
+
+# Scale-Location plot (Square root of standardized residuals vs Fitted Values)
+plot(lm_model, which = 3)
+```
+
+## Logistic regression
+
+**Introduction:**
+
+-   Logistic regression is a statistical modeling technique used to predict binary outcomes, such as whether an event will occur or not.
+
+-   In our context, we will use logistic regression to model the probability of a person having a high income based on their gender, age, and PhD status.
+
+Assumptions:
+
+1.  Binary outcome: The dependent variable should be binary, indicating two possible outcomes (e.g., higher than median income or not).
+
+2.  Independence of observations: Each observation should be independent of others.
+
+3.  Linearity in the log-odds: The relationship between predictors and log-odds should be linear. We assume a linear relationship between the predictors and the log-odds by using a linear combination in the formula.
+
+4.  No multicollinearity: The predictors should not be highly correlated with each other to avoid problems with interpretability.
+
+Fitting the Logistic Regression Model in R:
+
+```{r}
+# Fit logistic regression model
+data$high_income <- ifelse(data$above_median_salary == "Yes",1,0)
+
+model <- glm(high_income ~ Gender + Age + PhD, data = data, family = binomial)
+
+# Print the model summary
+summary(model)
+```
+
+## **Task 13 (4 minutes)**
+
+Now run the logistic regression with above mean salary used as an indicator of high income.
+
+```{r}
+# Fit logistic regression model
+data$high_income <- ifelse(data$above_mean_salary == "Yes",1,0)
+
+model <- glm(high_income ~ Gender + Age + PhD, data = data, family = binomial)
+
+# Print the model summary
+summary(model)
+```
+
+# Thanks for participation! Time for QA!
