@@ -20,7 +20,7 @@ title: "R Intro Course"
 
 -   Defining own R functions
 
--   Conditions and loops
+-   Conditions and loops
 
 **Lunch**
 
@@ -48,11 +48,11 @@ title: "R Intro Course"
 
 **POSITIONS:**
 
--   2022-\...: Associate Professor (20%) in statistics, University of Oslo
+-   2022-\... : Associate Professor (20%) in statistics, University of Oslo
 
--   **2022-\...: Associate Professor (50%) in statistics, Ostfold University College**
+-   **2022-\... : Associate Professor (50%) in statistics, Ostfold University College**
 
--   2022-\...: Associate Professor (50%) in statistics, Faculty of Chemistry, Biotechnology and Food Science, Norwegian University of Life Sciences
+-   2022-\... : Associate Professor (50%) in statistics, Faculty of Chemistry, Biotechnology and Food Science, Norwegian University of Life Sciences
 
 -   2021-\...: Head (voluntary) of Oslo Section of the Norwegian Statistical Association
 
@@ -60,9 +60,11 @@ title: "R Intro Course"
 
 -   **Introduction to R Course:**
 
-    -   R is a powerful programming language for data analysis and statistical computing.
+    -   R is a powerful cross platform programming language for data analysis and statistical computing.
 
-    -   The course is designed for beginners with little or no experience in programming and stats.
+    -   Although possible to develop web services and apps.
+
+    -   The course is designed for beginners with little experience in programming and stats.
 
     -   Gain a basic understanding of R's capabilities.
 
@@ -74,7 +76,7 @@ title: "R Intro Course"
 
 -   **Course Highlights:**
 
-    -   Navigate the R interface.
+    -   Navigate the Rstudio interface.
 
     -   Work with simple data types.
 
@@ -100,6 +102,7 @@ title: "R Intro Course"
 
 ```{r}
 print("Welcome to the course!")
+print("You can get statistical supervision! See https://www.hiof.no/for-ansatte/english/work-support/research-support/statistical-guidance/index.html")
 ```
 
 ## **Task 1 (1 minute)**
