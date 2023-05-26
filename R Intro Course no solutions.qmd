@@ -96,8 +96,7 @@ print("You can get statistical supervision! See https://www.hiof.no/for-ansatte/
 Now try printing and running "Hello, world! I am so eager to learn R today!" in the code-cell below
 
 ```{r}
-#print Hello, world! I am so eager to learn R today!
-print("Hello, world! I am so eager to learn R today!")
+
 ```
 
 ## Base R
@@ -234,25 +233,6 @@ plot(x = z, type = "l",main = y, xlab = "Elements of z", ylab = "Values of z",co
 Now create a new variable **v** with an integer value of **2** and then create a variable **a \<- v + u, b \<- v\*x, c \<- v - u, d \<- x/u**, **s \<-** **z\*c** , and **m \<- (b \> a)** then print all these resulting variables using the print command in the code cell below.
 
 ```{r}
-v <- 2  # Create variable v with an integer value of 2
-
-# Create other variables based on v and other existing variables
-a <- v + u
-b <- v * x
-c <- v + u
-d <- x / u
-s <- z*c
-m <- (d > a)
-
-
-# Print the values of all variables
-print(v)
-print(a)
-print(b)
-print(c)
-print(d)
-print(s)
-print(m)
 
 ```
 
@@ -261,14 +241,7 @@ print(m)
 Then, create a vector named **q** consisting of **a, b, c, d, x, v, u** in a given order, print this vector using the **print()** function, and plot this vector using **plot()** function. Use red color and lines when plotting (use **type = "l"** and **col = "red"** arguments to do that).
 
 ```{r}
-# Create the vector q
-q <- c(a, b, c, d, x, v, u)
 
-# Print the vector q
-print(q)
-
-# Plot the vector q
-plot(x = q, type = "l", col = "red")
 ```
 
 ## **Data.frame**
@@ -370,11 +343,6 @@ ggplot(df, aes(x = height, y = weight, color = gender)) +
 Install package **aRtsy**. Then load it and run a **help(canvas_flame)** followed by **canvas_flame(colors = colorPalette("dark2"))** functions.
 
 ```{r}
-utils::install.packages("aRtsy")
-library(aRtsy)
-
-help(canvas_flame)
-canvas_flame(colors = colorPalette("dark2"))
 
 ```
 
@@ -447,15 +415,7 @@ head(df.txt)
 **Read** the weight data **from** .xlsx format using **read_xlsx()** function (follow the **write_xlsx()** example ). Ckech what you have read through **head()** command. Here, we first need to **install** the **readexl** package. Use **path = "data.xlsx"**,**sheet = 1** parameters. Use **help(read_xlsx)** command if needed.
 
 ```{r}
-utils::install.packages("readxl")
-library(readxl)
 
-head(df)
-
-# Read the data frame from Excel (.xlsx)
-help(read_xlsx) 
-df.xlsx <- read_xlsx(path = "data.xlsx",sheet = 1)
-head(df.xlsx)
 ```
 
 You probably got a slightly different data.frame format, it is because **readxl** uses a bit more advanced data frames, but we can convert them to the basic ones as follows using the **as.data.frame()** function.
@@ -532,27 +492,6 @@ head(data)
 Use for loops and if else statements to define a column **`above_mean_age`** following our example above and compute a column of whether the individual has the age above average in our sample
 
 ```{r}
-# Calculate the average age
-avg_age <- mean(data$Age)
-print(avg_age)
-
-# Create an empty column to store age groups
-data$above_mean_age <- ""
-head(data)
-
-# Loop through each row of the data
-for (i in 1:nrow(data)) {
-  # Check if the age is above or below average
-  if (data$Age[i] > avg_age) {
-    data$above_mean_age[i] <- "Yes"
-  } else {
-    data$above_mean_age[i] <- "No"
-  }
-}
-
-
-# Print the updated data
-head(data)
 
 ```
 
@@ -578,15 +517,6 @@ head(data)
 Define a column **`above_median_age`** without using loops following our example above
 
 ```{r}
-# Calculate the median age
-median_age <- median(data$Age)
-print(median_age)
-
-# Create a new column using a logical condition
-data$above_median_age <- ifelse(data$Age > median_age, "Yes", "No")
-
-# Print the updated data
-head(data)
 
 ```
 
@@ -693,16 +623,10 @@ cor(data[,1:4])
 Run **summary** for **age**, run **table** for **PhD**, **cross tabulate using table** **above_mean_salary** and **above_mean_age**, aggregate **Salary** by **Gender**
 
 ```{r}
-summary(data$Age)
 
-table(data$PhD)
-
-table(data$above_mean_salary,data$above_mean_age)
-
-aggregate(data$Salary, by = list(data$Gender), FUN = mean)
 ```
 
-Now, look at distribution through **histograms** of continuous variables and **barplots** of discrete variables
+Now, let us look at distribution through **histograms** of continuous variables and **barplots** of discrete variables
 
 ```{r}
 # Histogram of Salary
@@ -754,24 +678,6 @@ Plot **hist** of **age**, **barplot** of **PhD**, **boxplots** of **Age**, **Age
 
 ```{r}
 
-# Histogram of Age
-hist(data$Age)
-
-# Histogram of PhD status
-barplot(table(data$PhD), main = "PhD")
-
-
-# Boxplot of Age
-boxplot(data$Age,main = "Age")
-
-# Boxplot of Age by Gender
-boxplot(data$Age ~ data$Gender)
-
-# Boxplot of Age by PhD
-boxplot(data$Age ~ data$PhD)
-
-# Boxplot of Age by PhD and Gender
-boxplot(data$Age ~ data$PhD + data$Gender)
 ```
 
 ## Introduction to t-tests
@@ -842,10 +748,7 @@ shapiro.test(data$Salary)
 **Check** the **normality** assumption for **age** and run the **t-test** of **mean age** being equal to **50** with a two-sided alternative
 
 ```{r}
-# Shapiro-Wilk test for normality
-shapiro.test(data$Age)
 
-t.test(data$Age, mu = 50, alternative = "two.sided")
 ```
 
 If **normality** assumptions are **not met**, run a sign test instead of t-test with the following syntax
@@ -934,24 +837,7 @@ wilcox.test(salary_phd, salary_non_phd,alternative = "greater")
 Run two sample t test for the **Salaries** by **Gender** with a **Ha of** that men geting more, then **check the assumptions** and if needed run a **Mann-Whitney U test**
 
 ```{r}
-# Subset the data by Gender
-salary_men <- data$Salary[data$Gender == 1]
-salary_women <- data$Salary[data$Gender == 0]
 
-# Perform two-sample t-test
-t.test(salary_men, salary_women,alternative = "greater")
-
-
-# Shapiro-Wilk test for normality
-shapiro.test(salary_men)
-shapiro.test(salary_women)
-
-# Levene's test for equality of variances
-leveneTest(Salary~factor(Gender), data = data)
-
-
-# Perform Mann-Whitney U test
-wilcox.test(salary_men, salary_women,alternative = "greater")
 ```
 
 # Hour 4
@@ -1047,37 +933,12 @@ plot(lm_model, which = 2)
 plot(lm_model, which = 3)
 ```
 
-## **Task 12 (5 minutes)**
+## **Task 12 (8 minutes)**
 
 Remove the Gender from the model and use **sqrt(Salary)** as the response in our linear regression and use more complicated effects, i.e. use **formula = sqrt(Salary) \~ Age + Gender + PhD + I(Age\^2) + I(Age\^3)**. Then check the assumptions of the model.
 
 ```{r}
-# Fit the linear regression model
-lm_model <- lm(formula = sqrt(Salary) ~ Age + Gender  + PhD + I(Age^2) + I(Age^3), data = data)
 
-# Print the model summary
-summary(lm_model)
-
-# Normality of residuals (H0)
-shapiro.test(lm_model$residuals)
-
-# Independence of residuals (H0)
-durbinWatsonTest(lm_model)
-
-# Homoscedasticity of the residuals (H0)
-bptest(lm_model)
-
-# Calculate correlations
-cor(data[,1:4])
-
-# Residuals vs Fitted Values plot
-plot(lm_model, which = 1)
-
-# Normal Q-Q plot of residuals
-plot(lm_model, which = 2)
-
-# Scale-Location plot (Square root of standardized residuals vs Fitted Values)
-plot(lm_model, which = 3)
 ```
 
 ## Logistic regression
@@ -1115,13 +976,7 @@ summary(model)
 Now run the logistic regression with above mean salary used as an indicator of high income.
 
 ```{r}
-# Fit logistic regression model
-data$high_income <- ifelse(data$above_mean_salary == "Yes",1,0)
 
-model <- glm(high_income ~ Gender + Age + PhD, data = data, family = binomial)
-
-# Print the model summary
-summary(model)
 ```
 
 # Thanks for participation! Time for QA!
