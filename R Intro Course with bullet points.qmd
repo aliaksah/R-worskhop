@@ -88,7 +88,6 @@ title: "R Intro Course"
 
 ```{r}
 print("Welcome to the course!")
-print("You can get statistical supervision! See https://www.hiof.no/for-ansatte/english/work-support/research-support/statistical-guidance/index.html")
 ```
 
 ## **Task 1 (1 minute)**
@@ -140,7 +139,7 @@ print("Hello, world! I am so eager to learn R today!")
 
     2.  Character:
 
-        -   Represents textual data, such as words, sentences, or strings.
+        -   Represents textual data, such as words, sentences.
 
         -   Enclosed in quotation marks (" ") or single quotes (' ').
 
@@ -169,7 +168,7 @@ print("Hello, world! I am so eager to learn R today!")
 u <- 5 # Integer variables for integer valued information
 l <- FALSE #Logical variable for boolean data
 x <- 5.3 # Numeric variable for decimal imformation
-y <- "Hello" # String variable for textual information
+y <- "Hello" # Character variable for textual information
 # Print the data types
 print(u)
 print(l)
@@ -184,7 +183,7 @@ In this code, we define four different data types:
 -   **`x`** is a numeric variable with the value 5.3
 -   **`y`** is a character variable with the value "Hello"
 
-**Arrays and matrices of data**
+**Vectors and matrices of data**
 
 ```{r}
 z <- c(1, 3, 2, 1, 4, 5) # c() function combines integer into a vector of integer variables 
@@ -226,12 +225,12 @@ We can plot learn and plot vector and matrix variables them using **`plot()`**. 
 ```{r}
 # Plot the data types
 help(plot)
-plot(x = z, type = "l",main = y, xlab = "Elements of z", ylab = "Values of z",col = "red")
+plot(x = z, type = "b",main = "Something", xlab = "Elements of z", ylab = "Values of z",col = "orange")
 ```
 
 ## **Task 2a (2 minutes)**
 
-Now create a new variable **v** with an integer value of **2** and then create a variable **a \<- v + u, b \<- v\*x, c \<- v - u, d \<- x/u**, **s \<-** **z\*c** , and **m \<- (b \> a)** then print all these resulting variables using the print command in the code cell below.
+Now create a new variable **v** with an integer value of **2** and then create a variable **a \<- v + u, b \<- v\*x, c \<- v - u, d \<- x/u**, **s \<-** **z\*c** , and **m \<- (b \> a)** then print all these resulting variables using the **print** command in the code cell below.
 
 ```{r}
 v <- 2  # Create variable v with an integer value of 2
@@ -239,7 +238,7 @@ v <- 2  # Create variable v with an integer value of 2
 # Create other variables based on v and other existing variables
 a <- v + u
 b <- v * x
-c <- v + u
+c <- v - u
 d <- x / u
 s <- z*c
 m <- (d > a)
@@ -258,7 +257,7 @@ print(m)
 
 ## **Task 2b (2 minutes)**
 
-Then, create a vector named **q** consisting of **a, b, c, d, x, v, u** in a given order, print this vector using the **print()** function, and plot this vector using **plot()** function. Use red color and lines when plotting (use **type = "l"** and **col = "red"** arguments to do that).
+Then, create a **vector** named **q** using **c()** consisting of **a, b, c, d, x, v, u** in a given order, **print** this vector **q** using the **print()** function, and plot this vector using **plot()** function. Use red color and lines when plotting (use **type = "l"** and **col = "red"** arguments to do that).
 
 ```{r}
 # Create the vector q
@@ -285,7 +284,7 @@ df <- data.frame(
 
 head(df) #Try help(head)
 
-df$bmi <- df$weight/((df$height/100)*2)
+df$bmi <- df$weight/((df$height/100)^2)
 
 head(df)
 
@@ -297,27 +296,21 @@ plot(x = df$height, y = df$weight, col = ifelse(df$gender == "male","blue","pink
 legend("bottomright", legend = c("Male", "Female"), pch = 1, col = c("blue","pink"))
 ```
 
-This code creates a data frame **`df`** with two variables **`height`** and **`weight`** for male and female. The **`plot()`** function is used to create a scatter plot of weight as a function of height for both genders on one plot, with **`pch = 16`** to set the point marker, **`col = df$gender`** to color points by gender, and appropriate labels for the x-axis, y-axis, and title. The **`legend()`** function is used to add a legend to the plot, with **`legend = c("Male", "Female")`** to set the legend labels and **`col = c("blue", "red")`** to match the colors of the points.
-
 ### **Task 3 (5 minutes)**
 
-Write code that creates a column **weight_problem** indicating whether a person has potential weight problems **(bmi \> 25)** and plots the data in different colors based on that variable (instead of gender used above).
+Write code that creates a column **overweight** indicating whether a person has potential overweight (**"Yes"** or **"No"**) **(bmi \> 25)** and plots the data in different colors (**red** for people overweight, **green** for people without overweight) based on that variable (instead of gender used above). **Do not use use a legend.**
 
 ```{r}
 
-# Create a column indicating weight problems
-df$weight_problem <- ifelse(df$bmi>25,"Yes","No")
+# Create a column indicating overweighting
+df$overweight <- ifelse(df$bmi>25,"Yes","No")
 
 head(df)
 
 # Set plot parameters
-plot(x = df$height, y = df$weight, col = ifelse(df$weight_problem  == "Yes","red","green"),
+plot(x = df$height, y = df$weight, col = ifelse(df$overweight  == "Yes","red","green"),
      xlab = "Height", ylab = "Weight", 
-     main = "Weight vs. Height by Weight Problem")
-
-# Add legend
-legend("bottomright", legend = c("No", "Yes"), 
-       pch = 1, col = c("green", "red"))
+     main = "Weight vs. Height by Bmi > 25")
 
 ```
 
@@ -367,15 +360,14 @@ ggplot(df, aes(x = height, y = weight, color = gender)) +
 
 ## **Task 4 (2 minutes)**
 
-Install package **aRtsy**. Then load it and run a **help(canvas_flame)** followed by **canvas_flame(colors = colorPalette("dark2"))** functions.
+Install package **aRtsy**. Then load it using **library(aRtsy)** comand and run a **help(canvas_flame)** followed by **canvas_flame(colors = colorPalette("dark2"), background = "white")** functions. Play around with background colors if you are excited during the *break*!
 
 ```{r}
 utils::install.packages("aRtsy")
 library(aRtsy)
 
 help(canvas_flame)
-canvas_flame(colors = colorPalette("dark2"))
-
+canvas_flame(colors = colorPalette("dark2"), background = "white")
 ```
 
 # Hour 2
@@ -422,7 +414,7 @@ utils::install.packages("writexl")
 library(writexl)
 
 # Save data frame to Excel (.xlsx)
-write_xlsx(df, "data.xlsx")
+write_xlsx(x = df, path = "data.xlsx")
 ```
 
 ## Data reading
@@ -435,7 +427,7 @@ head(df)
 df.csv <- read.csv(file = "data.csv")
 head(df.csv)
 
-df.csv <- read.csv(file = "data.csv")[,-1]
+df.csv <- read.csv(file = "data.csv")[,-c(1)]
 head(df.csv)
 
 df.txt <- read.table(file = "data.txt")
@@ -444,7 +436,7 @@ head(df.txt)
 
 ## **Task 5 (2 minutes)**
 
-**Read** the weight data **from** .xlsx format using **read_xlsx()** function (follow the **write_xlsx()** example ). Ckech what you have read through **head()** command. Here, we first need to **install** the **readexl** package. Use **path = "data.xlsx"**,**sheet = 1** parameters. Use **help(read_xlsx)** command if needed.
+**Read** the weight data **from** .xlsx format using **read_xlsx()** function (follow the **write_xlsx()** example ). Check what you have read through **head()** command. Here, we first need to **install** the **readxl** package. Use **path = "data.xlsx"**,**sheet = 1** parameters. Use **help(read_xlsx)** command if needed.
 
 ```{r}
 utils::install.packages("readxl")
@@ -458,18 +450,9 @@ df.xlsx <- read_xlsx(path = "data.xlsx",sheet = 1)
 head(df.xlsx)
 ```
 
-You probably got a slightly different data.frame format, it is because **readxl** uses a bit more advanced data frames, but we can convert them to the basic ones as follows using the **as.data.frame()** function.
-
-```{r}
-head(df)
-
-df.xlsx <- as.data.frame(read_xlsx("data.xlsx",sheet = 1))
-head(df.xlsx)
-```
-
 N/b reading from SAS, SPSS, and Stata can also be done through **foreign** package, but we skip that for the interest of time.
 
-## Read a real data to analyze
+## Read a real data set to analyze
 
 -   Dataset Description:
 
@@ -482,7 +465,7 @@ N/b reading from SAS, SPSS, and Stata can also be done through **foreign** packa
     -   Limited number of instances: 100.
 
 ```{r}
-data <- read.csv("salary.csv")
+data <- read.csv(file = "salary.csv")
 head(data)
 ```
 
@@ -529,7 +512,7 @@ head(data)
 
 ## **Task 6 (4 minutes)**
 
-Use for loops and if else statements to define a column **`above_mean_age`** following our example above and compute a column of whether the individual has the age above average in our sample
+Use for loops and if else statements to define a column **`above_mean_age`** following our example above and compute a column of whether individual has the above average (**"Yes"**) or not (**"No"**) in our sample
 
 ```{r}
 # Calculate the average age
@@ -575,7 +558,7 @@ head(data)
 
 ## **Task 7 (2 minutes)**
 
-Define a column **`above_median_age`** without using loops following our example above
+Define a column **`above_median_age`** **without using loops** following our example above
 
 ```{r}
 # Calculate the median age
@@ -595,6 +578,9 @@ head(data)
 Let us define a new function in R that counts the number of differing values in a pair of vectors of the same length:
 
 ```{r}
+vector1 <- c(1, 2, 3, 4, 4)
+vector2 <- c(3, 4, 5, 4, 7)
+
 count_diff_values <- function(vector1, vector2) {
   
   diff <- 0
@@ -639,6 +625,7 @@ count_diff_values <- function(vector1, vector2) {
     # Example usage
     vector1 <- c(1, 2, 3, 4, 4)
     vector2 <- c(3, 4, 5, 4, 7)
+
     result <- count_diff_values(vector1, vector2)
     print(result)
     ```
@@ -681,7 +668,7 @@ table(data$Gender, data$PhD)
 
 
 # Aggregate consinous vaiable by a categorical variable
-aggregate(data$Salary, by = list(data$PhD), FUN = mean)
+aggregate(x = data$Salary, by = list(data$PhD), FUN = mean)
 
 # Correlation between variables
 cor(data[,1:4])
@@ -699,7 +686,7 @@ table(data$PhD)
 
 table(data$above_mean_salary,data$above_mean_age)
 
-aggregate(data$Salary, by = list(data$Gender), FUN = mean)
+aggregate(x = data$Salary, by = list(data$Gender), FUN = mean)
 ```
 
 Now, look at distribution through **histograms** of continuous variables and **barplots** of discrete variables
@@ -708,21 +695,18 @@ Now, look at distribution through **histograms** of continuous variables and **b
 # Histogram of Salary
 hist(data$Salary)
 
-# Histogram of log Salary
-hist(log(data$Salary))
 
-
-# Histogram of Gender
+# Barplot of Gender
 barplot(table(data$Gender), main = "Gender")
 
 
-# Histogram of whether one has above median salary
+# Barplot of whether one has above median salary
 barplot(table(data$above_median_salary),main = "above_median_salary")
 
-# Histogram of whether one has above mean salary
+# Barplotof whether one has above mean salary
 barplot(table(data$above_mean_salary), main = "above_mean_salary")
 
-# Histogram of whether one has above median age
+# Barplot of whether one has above median age
 barplot(table(data$above_median_age), main = "above_median_age")
 
 # Histogram of whether one has above mean age
@@ -778,7 +762,7 @@ boxplot(data$Age ~ data$PhD + data$Gender)
 
 We shall learn how to check assumptions and run the one sample t-test and two sample t-tests. No math details are given in this short course.
 
-## **One-Sample t-Test**
+## **One-Sample t-test**
 
 -   The **null hypothesis** in a **one-sample t-test** states that **there is no significant difference between the sample mean and a specified value**.
 
@@ -809,6 +793,7 @@ We shall learn how to check assumptions and run the one sample t-test and two sa
 **One-Sample t-test on Salary:**
 
 ```{r}
+mean(data$Salary)
 
 # One-sample t-tests
 t.test(data$Salary, mu = 70, alternative = "two.sided")
@@ -851,12 +836,12 @@ t.test(data$Age, mu = 50, alternative = "two.sided")
 If **normality** assumptions are **not met**, run a sign test instead of t-test with the following syntax
 
 ```{r}
-utils::install.packages("BSDA")
-library(BSDA)
 
-# Perform one-sample sign test
-SIGN.test(data$Salary, md = 70, alternative = "two.sided")
+# Perform Mann-Whitney U test
+wilcox.test(data$Salary-70,alternative = "two.sided")
 
+# Perform Mann-Whitney U test
+wilcox.test(data$Age-50,alternative = "two.sided")
 ```
 
 ## **Two-Samples t-test**
@@ -931,7 +916,7 @@ wilcox.test(salary_phd, salary_non_phd,alternative = "greater")
 
 ## **Task 11 (3 minutes)**
 
-Run two sample t test for the **Salaries** by **Gender** with a **Ha of** that men geting more, then **check the assumptions** and if needed run a **Mann-Whitney U test**
+Run two sample t test for the **Salaries** by **Gender** with a **Ha of** that men getting more, then **check the assumptions** and if needed run a **Mann-Whitney U test**
 
 ```{r}
 # Subset the data by Gender
@@ -1047,13 +1032,15 @@ plot(lm_model, which = 2)
 plot(lm_model, which = 3)
 ```
 
-## **Task 12 (5 minutes)**
+## **Task 12 (8 minutes)**
 
-Remove the Gender from the model and use **sqrt(Salary)** as the response in our linear regression and use more complicated effects, i.e. use **formula = sqrt(Salary) \~ Age + Gender + PhD + I(Age\^2) + I(Age\^3)**. Then check the assumptions of the model.
+Now use **Age** as the response in our linear regression and use more complicated effects, i.e. use **formula = Age \~ Salary + Gender + PhD**
+
+Then check the assumptions of the model.
 
 ```{r}
 # Fit the linear regression model
-lm_model <- lm(formula = sqrt(Salary) ~ Age + Gender  + PhD + I(Age^2) + I(Age^3), data = data)
+lm_model <- lm(formula = Age ~ Salary + Gender + PhD, data = data)
 
 # Print the model summary
 summary(lm_model)
@@ -1094,7 +1081,11 @@ Assumptions:
 
 2.  Independence of observations: Each observation should be independent of others.
 
-3.  Linearity in the log-odds: The relationship between predictors and log-odds should be linear. We assume a linear relationship between the predictors and the log-odds by using a linear combination in the formula.
+3.  Linearity in the log-odds
+
+    **ln(p/(1-p)) =** β₀ + β₁ \* Age + β₂ \* Gender + β₃ \* PhD
+
+    The relationship between predictors and log-odds should be linear. We assume a linear relationship between the predictors and the log-odds by using a linear combination in the formula.
 
 4.  No multicollinearity: The predictors should not be highly correlated with each other to avoid problems with interpretability.
 
@@ -1103,6 +1094,7 @@ Fitting the Logistic Regression Model in R:
 ```{r}
 # Fit logistic regression model
 data$high_income <- ifelse(data$above_median_salary == "Yes",1,0)
+print(data$high_income)
 
 model <- glm(formula = high_income ~ Gender + Age + PhD, data = data, family = binomial)
 
@@ -1112,7 +1104,7 @@ summary(model)
 
 ## **Task 13 (4 minutes)**
 
-Now run the logistic regression with above mean salary used as an indicator of high income.
+Now run the logistic regression with **above_mean_salary** used as an indicator of high income.
 
 ```{r}
 # Fit logistic regression model
